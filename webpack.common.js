@@ -6,12 +6,22 @@ const webpack = require('webpack');
 module.exports = {
   
   entry: {
+    // webpack entry文件
     app: './src/index.js'
   },
   plugins: [
+    // 清除dist
     new CleanWebpackPlugin(['dist']),
+    // 生成html
+    // HtmlWebpackPlugin的相关配置
     new HtmlWebpackPlugin({
-      title: 'marjovenprogram'
+      // 如果设置了templeta 则tile等可能以template配置为主
+      // title: 'marjovenprogram',
+      // template html 模版html
+      // 可以使用ejs jade 等template,需要配置对应loader
+      //  详情查看HtmlWebpackPlugin官方
+      template: './index.html'
+
     }),
     new webpack.optimize.SplitChunksPlugin({
       // ************************默认
@@ -53,6 +63,16 @@ module.exports = {
     // filename: '[name].bundle.js',
     path: path.resolve(__dirname, 'dist')
   },
+  resolve:{
+    alias: {
+    
+     
+      'utils':path.resolve(__dirname, './src/utils'),
+      'configs':path.resolve(__dirname, './src/configs'),
+      'router':path.resolve(__dirname, './src/router'),
+      // 'views':path.resolve(__dirname, './src/views')
+    },
+  },
   module:{
     rules:[
       {
@@ -62,13 +82,11 @@ module.exports = {
       //编译为es5
       // cacheDirectory 可以提升babel编译
       { 
-        test: /\.js$/, 
+        test:/\.js|jsx$/, 
         exclude: /(node_modules|bower_components)/, 
-        // loader: "babel-loader" 
         use: {
           loader: 'babel-loader',
           options: {
-            presets: ['@babel/preset-env']
           }
         }
       }

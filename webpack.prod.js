@@ -2,6 +2,12 @@ const merge = require('webpack-merge');
 // const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 const common = require('./webpack.common.js');
 const webpack = require('webpack');
+
+
+// babel-presets-react-app需要配置node babel env
+process.env.NODE_ENV = 'production';
+process.env.BABEL_ENV = 'production';
+
 module.exports = merge(common, {
   mode: 'production',
   //生产环境 跟踪bug  source-map浪费资源，可以适当去掉,设置为none

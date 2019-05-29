@@ -3,55 +3,32 @@ import printMe from './print.js';
 import {utiDate} from 'utility-mar';
 import { cube } from './math.js';
 import './style.css';
-import jspdf from 'jspdf';
 import React from 'react'
-
+import { Provider} from 'react-redux';
+import { createStore } from 'redux';
+import { Route,Router } from 'react-router-dom';
+import history from 'router/history';
+import reducers from './reducers';
 import ReactDOM from 'react-dom'
+// 主应用app入口文件
+import App from './App';
 
 
-console.log(new jspdf());
-function component() {
-  console.log(utiDate);
-  var element = document.createElement('div');
-  var btn = document.createElement('button');
-  
-  cube(5);
-  
-  console.log(
-    _.join(['dddddddd', 'module', 'loaded!'], ' ')
-  );
-  [1, 2, 3].map((n) => {
-    console.log(n);
-  });  
-  btn.innerHTML = 'fuckindex!';
-  btn.onclick = printMe;
-  element.appendChild(btn);
-  return element;
-  
-  
-  
-
-
-
-  
-}
-
-document.body.appendChild(component());
-
-
-
-
-
- 
-// class MyComponent extends React.Component {
-//   render() {
-//     return <div>Hello World</div>;
-//   }
-// }
- 
-// ReactDOM.render(<MyComponent />, node);
-
-
+let store = createStore(reducers,
+  {
+    login:{
+      LoginStatus:false
+    }
+  }
+);
+ReactDOM.render(
+  <Provider store={store}>
+    <Router history={history}>
+      <Route path="/" component={App}/>
+    </Router>
+  </Provider>,
+  document.getElementById('root')
+);
 
 
 
