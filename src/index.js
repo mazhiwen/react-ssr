@@ -11,7 +11,7 @@ import history from 'router/history';
 import reducers from './reducers';
 import ReactDOM from 'react-dom'
 // 主应用app入口文件
-import App from './App';
+import App from './App.jsx';
 
 
 let store = createStore(reducers,

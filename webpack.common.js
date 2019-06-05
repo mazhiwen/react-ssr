@@ -70,8 +70,12 @@ module.exports = {
       'utils':path.resolve(__dirname, './src/utils'),
       'configs':path.resolve(__dirname, './src/configs'),
       'router':path.resolve(__dirname, './src/router'),
-      // 'views':path.resolve(__dirname, './src/views')
+      'views':path.resolve(__dirname, './src/views'),
+      'components':path.resolve(__dirname, './src/components')
+
     },
+    // 配置默认import index的文件扩展名
+    extensions:['.js','.json','.jsx']
   },
   module:{
     rules:[
@@ -79,6 +83,10 @@ module.exports = {
         test:/\.css$/,
         use: ['style-loader', 'css-loader']
       },
+      // {
+      //   test: /\.less$/,
+      //   loader: 'less-loader' // 将 Less 编译为 CSS
+      // },
       //编译为es5
       // cacheDirectory 可以提升babel编译
       { 
