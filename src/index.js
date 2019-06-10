@@ -2,7 +2,7 @@ import _ from 'lodash';
 import printMe from './print.js';
 import {utiDate} from 'utility-mar';
 import { cube } from './math.js';
-import './style.css';
+import './style.less';
 import React from 'react'
 import { Provider} from 'react-redux';
 import { createStore } from 'redux';

@@ -83,10 +83,10 @@ module.exports = {
         test:/\.css$/,
         use: ['style-loader', 'css-loader']
       },
-      // {
-      //   test: /\.less$/,
-      //   loader: 'less-loader' // 将 Less 编译为 CSS
-      // },
+      {
+        test: /\.less$/,
+        loader: 'less-loader' // 将 Less 编译为 CSS
+      },
       //编译为es5
       // cacheDirectory 可以提升babel编译
       { 
