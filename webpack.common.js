@@ -84,8 +84,18 @@ module.exports = {
         use: ['style-loader', 'css-loader']
       },
       {
+        // 编译less为css以下都需要配置
         test: /\.less$/,
-        loader: 'less-loader' // 将 Less 编译为 CSS
+        rules: [{
+          test: /\.less$/,
+          use: [{
+            loader: 'style-loader' // creates style nodes from JS strings
+          }, {
+            loader: 'css-loader' // translates CSS into CommonJS
+          }, {
+            loader: 'less-loader' // compiles Less to CSS
+          }]
+        }]      
       },
       //编译为es5
       // cacheDirectory 可以提升babel编译
