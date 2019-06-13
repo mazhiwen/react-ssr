@@ -11,6 +11,8 @@
                 "style": "css"   
                 // or 'true' true会编译报错
             }
-        ]
+        ],
+        // react class编译
+        "transform-class-properties"
     ]
 }
