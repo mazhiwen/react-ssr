@@ -27,7 +27,7 @@ export default class compo extends React.Component {
     
       <div>
 
-<Menu onClick={this.handleClick} selectedKeys={[this.state.current]} mode="horizontal">
+  <Menu onClick={this.handleClick} selectedKeys={[this.state.current]} mode="horizontal">
         <Menu.Item key="mail">
           <Icon type="mail" />
           Navigation One

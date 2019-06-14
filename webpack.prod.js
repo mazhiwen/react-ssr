@@ -9,7 +9,6 @@ process.env.NODE_ENV = 'production';
 process.env.BABEL_ENV = 'production';
 
 module.exports = merge(common, {
-  mode: 'production',
   //生产环境 跟踪bug  source-map浪费资源，可以适当去掉,设置为none
   devtool: 'source-map',
   plugins: [
