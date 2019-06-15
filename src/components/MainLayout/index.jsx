@@ -12,20 +12,22 @@ const {
 export default class extends React.Component {
   render() {
     return (
+      <Layout>
+        <Header className="header">
+          <div>
+            图标
+          </div>
+          <Menu />
 
-      <div>
+        </Header>
+        <Content>
+          {renderRoutes(routes)}
+        </Content>
+        <Footer>
+          Footer
 
-        <Layout>
-          <Header className="header">
-            <Menu />
-
-          </Header>
-          <Content>{renderRoutes(routes)}</Content>
-          <Footer>Footer</Footer>
-        </Layout>
-
-
-      </div>
+        </Footer>
+      </Layout>
     );
   }
 }
