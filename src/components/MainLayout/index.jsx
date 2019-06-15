@@ -1,21 +1,24 @@
-import React from 'react'
-import { Button ,Layout} from "antd"
-import {Route,Switch } from 'react-router-dom'
-import {renderRoutes,matchRoutes} from 'react-router-config';
-import {routes} from 'router';
+import React from 'react';
+import { Button, Layout } from 'antd';
+import { Route, Switch } from 'react-router-dom';
+import { renderRoutes, matchRoutes } from 'react-router-config';
+import { routes } from 'router';
 import Menu from 'components/Menu';
-const { Header, Footer, Sider, Content } = Layout;
+
+const {
+  Header, Footer, Content,
+} = Layout;
 
 export default class extends React.Component {
   render() {
-    return(  
-    
+    return (
+
       <div>
 
         <Layout>
           <Header className="header">
-              <Menu/>
-          
+            <Menu />
+
           </Header>
           <Content>{renderRoutes(routes)}</Content>
           <Footer>Footer</Footer>

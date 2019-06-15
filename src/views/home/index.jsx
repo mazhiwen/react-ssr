@@ -1,12 +1,12 @@
-import React from 'react'
+import React from 'react';
 
 export default class extends React.Component {
-    render() {
-      return(  
-      
-        <div>
-          fuck
-        </div>
-      );
-    }
+  render() {
+    return (
+
+      <div>
+        fuck
+      </div>
+    );
   }
+}

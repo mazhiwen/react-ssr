@@ -24,15 +24,16 @@ module.exports = {
     ],
     "rules": {
         "no-console": 0, //不禁用console
-        "indent":["error","single"],
-        "react/prefer-stateless-function":0
+        // "indent":["error","single"],
+        "react/prefer-stateless-function":0,
+        "no-unused-vars":1
     },
     "settings": {
-        // 'import/resolver': {
-        //     webpack: {
-        //       config: './webpack.common.js',
-        //     }
-        // },
+        'import/resolver': {
+            webpack: {
+              config: './webpack.common.js',
+            }
+        },
        
     }
 };

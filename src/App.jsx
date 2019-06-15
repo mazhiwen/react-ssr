@@ -11,6 +11,6 @@ export default class extends React.Component {
   }
 
   render() {
-    return <MainLayout/>;
+    return <MainLayout />;
   }
 }

@@ -1,40 +1,37 @@
 import _ from 'lodash';
-import printMe from './print.js';
-import {utiDate} from 'utility-mar';
-import { cube } from './math.js';
+import { utiDate } from 'utility-mar';
 import 'styles';
-import React from 'react'
-import { Provider} from 'react-redux';
+import React from 'react';
+import { Provider } from 'react-redux';
 import { createStore } from 'redux';
-import { Route,Router } from 'react-router-dom';
+import { Route, Router } from 'react-router-dom';
 import history from 'router/history';
+import ReactDOM from 'react-dom';
 import reducers from './reducers';
-import ReactDOM from 'react-dom'
+import { cube } from './math.js';
+import printMe from './print.js';
 // 主应用app入口文件
 import App from './App.jsx';
 
 
-let store = createStore(reducers,
+const store = createStore(reducers,
   {
-    login:{
-      LoginStatus:false
-    }
-  }
-);
+    login: {
+      LoginStatus: false,
+    },
+  });
 ReactDOM.render(
   <Provider store={store}>
     <Router history={history}>
-      <Route path="/" component={App}/>
+      <Route path="/" component={App} />
     </Router>
   </Provider>,
-  document.getElementById('root')
+  document.getElementById('root'),
 );
 
 
-
-
-//测试模块热更新  
-/*  
+// 测试模块热更新
+/*
 if (module.hot) {
   module.hot.accept('./print.js', function() {
     console.log('Accepting the updated printMe module!');
@@ -44,7 +41,7 @@ if (module.hot) {
 */
 
 
-//测试 node环境
+// 测试 node环境
 /*
 if (process.env.NODE_ENV !== 'production') {
   console.log('Looks like we are in development mode!');

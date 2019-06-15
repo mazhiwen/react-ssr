@@ -1,5 +1,5 @@
 
-import Home from 'views/home'; 
+import Home from 'views/home';
 // import Blacklist from 'views/blacklist';
 // import BlacklistList from 'views/blacklist/list';
 // import BlacklistAdd from 'views/blacklist/add';
@@ -8,8 +8,8 @@ import Home from 'views/home';
 const routes = [
   {
     path: '/',
-    exact:true,
-    component: Home
+    exact: true,
+    component: Home,
   },
   // {
   //   path: '/home',
@@ -38,31 +38,26 @@ const routes = [
   //     }
   //   ]
   // }
-    
-  
-]
 
 
-let routesUrlMap={};
-function getRoutesUrlMap(routes){
-  
-  routes.map((value,index)=>{
-    // 
-    if(value.routes){
-      getRoutesUrlMap(value.routes)
-    }else{
-      routesUrlMap[value.path]=value;
+];
+
+
+const routesUrlMap = {};
+function getRoutesUrlMap(routes) {
+  routes.map((value, index) => {
+    //
+    if (value.routes) {
+      getRoutesUrlMap(value.routes);
+    } else {
+      routesUrlMap[value.path] = value;
     }
-  })
+  });
 }
 getRoutesUrlMap(routes);
 
 
-
 export {
   routes,
-  routesUrlMap
-}
-
-
-
+  routesUrlMap,
+};
