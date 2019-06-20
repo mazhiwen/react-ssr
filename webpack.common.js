@@ -4,10 +4,10 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const webpack = require('webpack');
 
 module.exports = {
-  
+
   entry: {
     // webpack entry文件
-    app: './src/index.js'
+    app: './src/index.jsx',
   },
   plugins: [
     // 清除dist
@@ -20,12 +20,18 @@ module.exports = {
       // template html 模版html
       // 可以使用ejs jade 等template,需要配置对应loader
       //  详情查看HtmlWebpackPlugin官方
-      template: './index.html'
-
+      // template: './index.html',
+      template: './index.ejs',
+      // ejs template参数
+      // 参数可以在ejs文件中以es template字符 :${title}
+      // 或者其他查看lodash template相关配置
+      templateParameters: {
+        title: 'fk',
+      },
     }),
     new webpack.optimize.SplitChunksPlugin({
       // ************************默认
-      chunks: "all", //默认async
+      chunks: 'all', // 默认async
       minSize: 30000,
       minChunks: 1,
       maxAsyncRequests: 5,
@@ -34,15 +40,15 @@ module.exports = {
       cacheGroups: {
         vendors: {
           test: /[\\/]node_modules[\\/]/,
-          priority: -10
+          priority: -10,
         },
         default: {
           minChunks: 2,
           priority: -20,
-          reuseExistingChunk: true
-        }
-      }
-      //***************************/
+          reuseExistingChunk: true,
+        },
+      },
+      //* **************************/
       // cacheGroups: { // 这里开始设置缓存的 chunks
       //   priority: 0, // 缓存组优先级
       //   app: { // key 为entry中定义的入口名称
@@ -51,66 +57,71 @@ module.exports = {
       //     minSize: 0,
       //     minChunks: 1,
       //     enforce: true,
-      //     reuseExistingChunk: true 
+      //     reuseExistingChunk: true
       //   }
       // }
     }),
     new webpack.ProvidePlugin({
-      _: 'lodash'
-    })
+      _: 'lodash',
+    }),
   ],
   output: {
     // filename: '[name].bundle.js',
-    path: path.resolve(__dirname, 'dist')
+    path: path.resolve(__dirname, 'dist'),
   },
-  resolve:{
+  resolve: {
     alias: {
-    
-     
-      'utils':path.resolve(__dirname, './src/utils'),
-      'configs':path.resolve(__dirname, './src/configs'),
-      'router':path.resolve(__dirname, './src/router'),
-      'views':path.resolve(__dirname, './src/views'),
-      'styles':path.resolve(__dirname, './src/styles'),
 
-      'components':path.resolve(__dirname, './src/components')
+
+      utils: path.resolve(__dirname, './src/utils'),
+      configs: path.resolve(__dirname, './src/configs'),
+      router: path.resolve(__dirname, './src/router'),
+      views: path.resolve(__dirname, './src/views'),
+      styles: path.resolve(__dirname, './src/styles'),
+
+      components: path.resolve(__dirname, './src/components'),
 
     },
     // 配置默认import index的文件扩展名
-    extensions:['.js','.json','.jsx','.less']
+    extensions: ['.js', '.json', '.jsx', '.less'],
   },
-  module:{
-    rules:[
-      {
-        test:/\.css$/,
-        use: ['style-loader', 'css-loader']
+  module: {
+    rules: [{
+      test: /\.css$/,
+      use: ['style-loader', 'css-loader'],
+    },
+    {
+      test: /\.ejs$/,
+      loader: 'ejs-loader',
+      // query是 loader 也就是lodash.template对应的编译选项
+      query: {
+
       },
-      
-        // 编译less为css以下都需要配置
-      {
-        test: /\.less$/,
-        use: [{
-          loader: 'style-loader' // creates style nodes from JS strings
-        }, {
-          loader: 'css-loader' // translates CSS into CommonJS
-        }, {
-          loader: 'less-loader' // compiles Less to CSS
-        }]
-             
+    },
+    // 编译less为css以下都需要配置
+    {
+      test: /\.less$/,
+      use: [{
+        loader: 'style-loader', // creates style nodes from JS strings
+      }, {
+        loader: 'css-loader', // translates CSS into CommonJS
+      }, {
+        loader: 'less-loader', // compiles Less to CSS
+      }],
+
+    },
+    // 编译为es5
+    // cacheDirectory 可以提升babel编译
+    {
+      test: /\.js|jsx$/,
+      exclude: /(node_modules|bower_components)/,
+      use: {
+        loader: 'babel-loader',
+        options: {},
       },
-      //编译为es5
-      // cacheDirectory 可以提升babel编译
-      { 
-        test:/\.js|jsx$/, 
-        exclude: /(node_modules|bower_components)/, 
-        use: {
-          loader: 'babel-loader',
-          options: {
-          }
-        }
-      }
-    
-    ]
-    
+    },
+
+    ],
+
   },
 };

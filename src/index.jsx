@@ -8,8 +8,6 @@ import { Route, Router } from 'react-router-dom';
 import history from 'router/history';
 import ReactDOM from 'react-dom';
 import reducers from './reducers';
-import { cube } from './math.js';
-import printMe from './print.js';
 // 主应用app入口文件
 import App from './App.jsx';
 

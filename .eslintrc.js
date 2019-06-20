@@ -23,17 +23,19 @@ module.exports = {
         "react"
     ],
     "rules": {
+        "no-undef": 1,
         "no-console": 0, //不禁用console
         // "indent":["error","single"],
-        "react/prefer-stateless-function":0,
-        "no-unused-vars":1
+        "react/prefer-stateless-function": 0,
+        "no-unused-vars": 1,
+        "import/extensions": ["never"]
     },
     "settings": {
         'import/resolver': {
             webpack: {
-              config: './webpack.common.js',
+                config: './webpack.common.js',
             }
         },
-       
+
     }
 };
